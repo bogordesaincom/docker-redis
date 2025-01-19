@@ -1,6 +1,16 @@
 ARG REDIS_VERSION=7.4.2
 FROM redis:${REDIS_VERSION}-alpine
 
+ARG MAXMEMORY
+ENV MAXMEMORY 512
+
+ARG MAXMEMORY
+ENV MAXMEMORY=512
+ARG MAXMEMORY_POLICY
+ENV MAXMEMORY_POLICY=noeviction
+ARG APPENDONLY
+ENV APPENDONLY=yes
+
 COPY start-redis-server.sh /usr/bin/start-redis-server.sh
 
 CMD ["/usr/bin/start-redis-server.sh"]
